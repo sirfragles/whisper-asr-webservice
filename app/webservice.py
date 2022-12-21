@@ -13,8 +13,8 @@ from typing import BinaryIO, Union
 import numpy as np
 from io import StringIO
 from threading import Lock
-import torch
 import fastapi_offline_swagger_ui
+import torch
 import importlib.metadata 
 
 SAMPLE_RATE=16000
