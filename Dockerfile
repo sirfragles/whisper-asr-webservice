@@ -3,6 +3,8 @@ FROM python:3.9.9-slim
 ENV POETRY_VERSION=1.2.0
 ENV POETRY_VENV=/app/.venv
 
+EXPOSE 9000
+
 RUN export DEBIAN_FRONTEND=noninteractive \
     && apt-get -qq update \
     && apt-get -qq install --no-install-recommends \
