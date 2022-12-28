@@ -2,6 +2,7 @@ FROM python:3.9.9-slim
 
 ENV POETRY_VERSION=1.2.0
 ENV POETRY_VENV=/app/.venv
+ENV ASR_MODEL=medium
 
 EXPOSE 9000
 
