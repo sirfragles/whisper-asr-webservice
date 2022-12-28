@@ -3,6 +3,7 @@ FROM nvidia/cuda:11.7.0-base-ubuntu20.04
 ENV PYTHON_VERSION=3.9
 ENV POETRY_VERSION=1.2.0
 ENV POETRY_VENV=/app/.venv
+ENV ASR_MODEL=medium
 
 EXPOSE 9000
 
