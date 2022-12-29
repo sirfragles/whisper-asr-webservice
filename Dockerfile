@@ -1,7 +1,9 @@
 FROM python:3.9.9-slim
 
+RUN mkdir /workspace && chown -R 42420:42420 /workspace
+
 ENV POETRY_VERSION=1.2.0
-ENV POETRY_VENV=/app/.venv
+ENV POETRY_VENV=/workspace/app/.venv
 ENV ASR_MODEL=medium
 
 EXPOSE 9000
@@ -22,11 +24,10 @@ RUN if [ "$TARGETPLATFORM" = "linux/arm64" ]; then $POETRY_VENV/bin/pip install 
 
 ENV PATH="${PATH}:${POETRY_VENV}/bin"
 
-WORKDIR /app
+WORKDIR /workspace/app
+COPY . /workspace/app
 
-COPY . /app
-
-RUN chown -R 42420:42420 /app
+ENV HOME /workspace
 
 RUN poetry config virtualenvs.in-project true
 RUN poetry install
