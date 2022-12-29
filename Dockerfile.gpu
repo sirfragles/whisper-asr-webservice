@@ -1,8 +1,10 @@
 FROM nvidia/cuda:11.7.0-base-ubuntu20.04
 
+RUN mkdir /workspace && chown -R 42420:42420 /workspace
+
 ENV PYTHON_VERSION=3.9
 ENV POETRY_VERSION=1.2.0
-ENV POETRY_VENV=/app/.venv
+ENV POETRY_VENV=/workspace/app/.venv
 ENV ASR_MODEL=medium
 
 EXPOSE 9000
@@ -27,11 +29,9 @@ RUN python3 -m venv $POETRY_VENV \
 
 ENV PATH="${PATH}:${POETRY_VENV}/bin"
 
-WORKDIR /app
-
-COPY . /app
-
-RUN chown -R 42420:42420 /app
+WORKDIR /workspace/app
+ENV HOME /workspace
+COPY . /workspace/app
 
 RUN poetry config virtualenvs.in-project true
 RUN poetry install
