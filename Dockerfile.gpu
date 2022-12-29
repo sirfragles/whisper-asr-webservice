@@ -30,8 +30,9 @@ RUN python3 -m venv $POETRY_VENV \
 ENV PATH="${PATH}:${POETRY_VENV}/bin"
 
 WORKDIR /workspace/app
-ENV HOME /workspace
 COPY . /workspace/app
+
+ENV HOME /workspace
 
 RUN poetry config virtualenvs.in-project true
 RUN poetry install
